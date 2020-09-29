@@ -1,5 +1,4 @@
 
-from flask_restx import Api
 from flask import Flask
 from config import Config
 

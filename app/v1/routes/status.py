@@ -3,12 +3,11 @@
 from flask_restx import Namespace, Resource
 
 # API documentation init
-api = Namespace('index', description='General API information')
+api = Namespace('status', description='General API information')
 
 
-@api.route('/status')
+@api.route('')
 class Status(Resource):
 
     def get(self):
-
         return "Alive!"
