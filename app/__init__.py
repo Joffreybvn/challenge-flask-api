@@ -1,10 +1,11 @@
 
+from flask_restx import Api
 from flask import Flask
 from config import Config
 
-from app.api import bp as blueprint_api
-
-# db = SQLAlchemy()
+# App blueprint imports
+from app.v1 import blueprint as blueprint_v1
+from app.v2 import blueprint as blueprint_v2
 
 
 def create_app(config_class=Config):
@@ -13,10 +14,8 @@ def create_app(config_class=Config):
     app = Flask(__name__)
     app.config.from_object(config_class)
 
-    # db.init_app(app)
-    # migrate.init_app(app, db)
-
     # Load the blueprints
-    app.register_blueprint(blueprint_api, url_prefix='/api')
+    app.register_blueprint(blueprint_v1, url_prefix='/v1')
+    app.register_blueprint(blueprint_v2, url_prefix='/v2')
 
     return app
