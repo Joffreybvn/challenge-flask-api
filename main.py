@@ -1,4 +1,5 @@
 
+# https://flask-restx.readthedocs.io/en/latest/swagger.html
 # Imports
 from app import create_app
 
