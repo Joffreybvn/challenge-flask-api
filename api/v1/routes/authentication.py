@@ -2,6 +2,7 @@
 # Imports
 from flask import request
 from flask_restx import Namespace, Resource, fields
+from api.utils.ressources import PlainTextResource
 
 # API documentation init
 api = Namespace('login', description='API authentication')
@@ -14,10 +15,9 @@ model = api.model('Login', {
 
 
 @api.route('')
-class Authentication(Resource):
+class Authentication(Resource, PlainTextResource):
 
-    @api.doc(id='get_something',
-             body=model,
+    @api.doc(body=model,
              responses={
                  200: 'Success',
                  400: 'Validation Error'
@@ -28,5 +28,9 @@ class Authentication(Resource):
         Return a confirmation message with your username and the length of your password.
         """
 
-        content = request.get_json()
-        return f"Login success for user {content['username']} with password from length: {len(content['password'])}!"
+        # If a JSON is send, return a Success message.
+        if content := request.get_json():
+            message = f"Login success for user {content['username']} " \
+                      f"with password from length: {len(content['password'])}!"
+
+            return self.plain_text_response(message, 200)

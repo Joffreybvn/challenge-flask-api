@@ -3,8 +3,8 @@ from flask import Flask
 from config import Config
 
 # App blueprint imports
-from app.v1 import blueprint as blueprint_v1
-from app.v2 import blueprint as blueprint_v2
+from api.v1 import blueprint as blueprint_v1
+from api.v2 import blueprint as blueprint_v2
 
 
 def create_app(config_class=Config):

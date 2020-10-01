@@ -4,15 +4,16 @@ from flask import Blueprint
 from flask_restx import Api
 
 # Import the routes
-from app.v2.routes import status_api
+from api.v1.routes import status_api, auth_api, ml_api
 
-blueprint = Blueprint('v2', __name__)
+blueprint = Blueprint('v1', __name__)
 
 # Merge the blueprints with the doc
 api = Api(blueprint,
           title='Flask Demo API',
-          version='2.0',
-          description='This is a demo API, made with flask.',
-          contact='joffreybvn@gmail.com')
+          version='1.0',
+          description='Demo API made with flask and flask-restX.')
 
 api.add_namespace(status_api)
+api.add_namespace(auth_api)
+api.add_namespace(ml_api)
