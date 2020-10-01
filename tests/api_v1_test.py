@@ -49,8 +49,6 @@ class APIv1TestCase(unittest.TestCase):
         # Send the GET request
         response = self.app.get(f"/v1/predict/{query['seller_available']}/{query['month']}/{query['customer_visiting_website']}")
 
-        print(response)
-
         self.assertEqual(response.status_code, 200)
         self.assertLessEqual(int(response.data), 5000)
         self.assertGreaterEqual(int(response.data), 2000)
