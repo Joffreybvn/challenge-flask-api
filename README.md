@@ -14,7 +14,7 @@ This API was created for me to learn some key concept and must-have features tha
 ### Objectives
 Create an API ready to deliver a machine learning model to customers: The API need to be able to receive data from the user, and deliver a result based on a ML model.
 
-#### Constraints:
+### Constraints:
  - Create a **REST** API.
  - Make the API **easy-to-use** to the end-user:
     * With full documentation.
