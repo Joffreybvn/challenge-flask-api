@@ -10,7 +10,7 @@ blueprint = Blueprint('v1', __name__)
 
 # Merge the blueprints with the doc
 api = Api(blueprint,
-          title='Flask Demo API',
+          title='coucou mathieu',
           version='1.0',
           description='Demo API made with flask and flask-restX.')
 
