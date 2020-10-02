@@ -1,7 +1,28 @@
+
 language: python
 python:
   - 3.8
+services:
+  - docker
+
 install:
   - pip install -r requirements.txt
+
+before_script:
+  - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin # Login to dockerhub
+  - curl https://cli-assets.heroku.com/install.sh | sh  # Install heroku
+  - docker login --username=$HEROKU_LOGIN --password=$HEROKU_API_KEY registry.heroku.com  # Login to registry.heroku.com
+
 script:
-  - python -m unittest tests/api_v1_test.py
+  - python -m unittest tests/api_v1_test.py # Unit testing
+  - docker build -t joffreybvn/flask-demo-api:v1 .
+  - docker tag joffreybvn/flask-demo-api:v1 registry.heroku.com/$HEROKU_APP/web
+
+deploy:
+  provider: script
+  script:
+    docker push joffreybvn/flask-demo-api:v1;
+    docker push registry.heroku.com/$HEROKU_APP/web;
+    heroku container:release web --app $HEROKU_APP
+  on:
+    branch: master
