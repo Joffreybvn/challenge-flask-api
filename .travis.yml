@@ -15,7 +15,7 @@ before_script:
 
 script:
   - python -m unittest tests/api_v1_test.py # Unit testing
-  - docker build -t joffreybvn/flask-demo-api:v1 .
+  - docker build -t joffreybvn/flask-demo-api:latest .
   - docker tag joffreybvn/flask-demo-api:v1 registry.heroku.com/$HEROKU_APP/web
 
 deploy:
