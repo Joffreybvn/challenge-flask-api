@@ -1,1 +1,1 @@
-web: gunicorn --bind 0.0.0.0:5000 main:api
+web: gunicorn main:api
